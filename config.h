@@ -7,7 +7,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int progpx    = 50;       /* progress bar width */
 static const unsigned int progh     = 2;        /* progress bar height */
 static const Bool showbar           = True;     /* False means no bar */
-static const Bool topbar            = True;     /* False means bottom bar */
+static const Bool topbar            = False;     /* False means bottom bar */
 
 #define CYAN  "#133B47"
 #define BLACK "#131416"
