@@ -1,13 +1,13 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const char font[]            = "Terminus:size=9" "Kochi Gothic:size=9" "Baekmuk Gulim:size=9";
+static const char font[]            = "Terminus:size=8" "Kochi Gothic:size=9" "Baekmuk Gulim:size=9";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int progpx    = 50;       /* progress bar width */
 static const unsigned int progh     = 2;        /* progress bar height */
 static const Bool showbar           = True;     /* False means no bar */
-static const Bool topbar            = False;     /* False means bottom bar */
+static const Bool topbar            = True;     /* False means bottom bar */
 
 #define CYAN  "#133B47"
 #define BLACK "#131416"
@@ -28,7 +28,7 @@ static const char color[NUMCOL][ColLast][8] = {
 static const char clock_fmt[] = "%a, %I:%M %p";
 
 /* tagging */
-#define NTAGS 6
+#define NTAGS 5
 
 static const Rule rules[] = {
     /* xprop(1):
