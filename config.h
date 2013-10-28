@@ -10,22 +10,22 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 #define CYAN  "#133B47"
-#define BLACK "#131416"
+#define BLACK "#121212"
 #define DGRAY "#303030"
 #define LGRAY "#666666"
 #define RED   "#CF6171"
-#define WHITE "#FFFFFF"
+#define WHITE "#FEFEFE"
 
 static const char color[NUMCOL][ColLast][8] = {
     /* border foreground background */
     { DGRAY,  WHITE,     BLACK     }, /* 0 = unselected, unoccupied */
     { CYAN,   WHITE,     CYAN      }, /* 1 = selected, occupied */
     { RED,    RED,       BLACK     }, /* 2 = urgent */
-    { DGRAY,  WHITE,     BLACK     }, /* 3 = unselected, occupied */
-    { DGRAY,  WHITE,     CYAN      }, /* 4 = selected, unoccupied */
+    { BLACK,  WHITE,     BLACK     }, /* 3 = unselected, occupied */
+    { BLACK,  WHITE,     CYAN      }, /* 4 = selected, unoccupied */
 };
 
-static const char clock_fmt[] = "%a, %I:%M %p";
+static const char clock_fmt[] = "%a, %m/%d (%H:%M)";
 
 /* tagging */
 #define NTAGS 5
@@ -46,7 +46,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact      = 0.60; /* factor of master area size [0.05..0.95] */
+static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
