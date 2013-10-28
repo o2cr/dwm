@@ -118,3 +118,4 @@ static Button buttons[] = {
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 };
+
