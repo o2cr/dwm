@@ -42,7 +42,7 @@ static const Rule rules[] = {
     { "LxPanel",  NULL,       NULL,       1 << 4,          True,        -1 },
     { "Gimp",     NULL,       NULL,       1 << 4,          True,        -1 },
     { "Audacity", NULL,       NULL,       1 << 4,          False,        -1 },
-    { "Evince",   NULL,       NULL,       1 << 4,          True,        -1 },
+    { "Evince",   NULL,       NULL,       1 << 4,          False,        -1 },
 };
 
 /* layout(s) */
