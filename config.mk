@@ -1,5 +1,5 @@
 # dwm version
-VERSION = 6.1-pantsu
+VERSION = 6.1-oppai
 
 # Customize below to fit your system
 
