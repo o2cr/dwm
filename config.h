@@ -28,7 +28,7 @@ static const char color[NUMCOL][ColLast][8] = {
 static const char clock_fmt[] = "%a, %m/%d (%H:%M)";
 
 /* tagging */
-#define NTAGS 5
+#define NTAGS 6
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -41,12 +41,11 @@ static const Rule rules[] = {
     { "Mpv",      NULL,       NULL,       1 << 3,          True,        -1 },
     { "LxPanel",  NULL,       NULL,       1 << 4,          True,        -1 },
     { "Gimp",     NULL,       NULL,       1 << 4,          True,        -1 },
-    { "Audacity", NULL,       NULL,       1 << 4,          False,        -1 },
     { "Evince",   NULL,       NULL,       1 << 4,          False,        -1 },
 };
 
 /* layout(s) */
-static const float mfact      = 0.50; /* factor of master area size [0.05..0.95] */
+static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 2;    /* number of clients in master area */
 static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
@@ -69,7 +68,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", color[0][ColBG], "-nf", color[0][ColFG], "-sb", color[1][ColBG], "-sf", color[1][ColFG], NULL };
 static const char *termcmd[]  = { "urxvt", NULL };
-static const char *surfcmd[]  = { "firefox", NULL };
+static const char *surfcmd[]  = { "luakit", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
