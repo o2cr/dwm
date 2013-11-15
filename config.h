@@ -9,26 +9,27 @@ static const unsigned int progh     = 2;        /* progress bar height */
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
-#define CYAN  "#133B47"
-#define BLACK "#121212"
-#define DGRAY "#303030"
+#define CYAN  "#6AA9B0"
+#define BLACK "#373737"
+#define DGRAY "#575757"
 #define LGRAY "#666666"
-#define RED   "#CF6171"
-#define WHITE "#FEFEFE"
+#define PINK "#FCC1A2"
+#define YELLOW "#7882BF"
+#define WHITE "#F0F0F0"
 
 static const char color[NUMCOL][ColLast][8] = {
     /* border foreground background */
-    { DGRAY,  WHITE,     BLACK     }, /* 0 = unselected, unoccupied */
-    { CYAN,   WHITE,     CYAN      }, /* 1 = selected, occupied */
-    { RED,    RED,       BLACK     }, /* 2 = urgent */
-    { BLACK,  WHITE,     BLACK     }, /* 3 = unselected, occupied */
-    { BLACK,  WHITE,     CYAN      }, /* 4 = selected, unoccupied */
+    { LGRAY,  DGRAY,     WHITE     }, /* 0 = unselected, unoccupied */
+    { YELLOW, DGRAY,     YELLOW    }, /* 1 = selected, occupied */
+    { PINK,   PINK,      WHITE     }, /* 2 = urgent */
+    { LGRAY,  DGRAY,     WHITE     }, /* 3 = unselected, occupied */
+    { LGRAY,  WHITE,     CYAN      }, /* 4 = selected, unoccupied */
 };
 
 static const char clock_fmt[] = "%a, %m/%d (%H:%M)";
 
 /* tagging */
-#define NTAGS 6
+#define NTAGS 5
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -68,7 +69,7 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", color[0][ColBG], "-nf", color[0][ColFG], "-sb", color[1][ColBG], "-sf", color[1][ColFG], NULL };
 static const char *termcmd[]  = { "urxvt", NULL };
-static const char *surfcmd[]  = { "luakit", NULL };
+static const char *surfcmd[]  = { "firefox", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
