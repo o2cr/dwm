@@ -1,5 +1,5 @@
 # dwm version
-VERSION = 6.1-oppai
+VERSION = 6.1-white
 
 # Customize below to fit your system
 
