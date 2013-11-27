@@ -70,12 +70,19 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", color[0][ColBG], "-nf", color[0][ColFG], "-sb", color[1][ColBG], "-sf", color[1][ColFG], NULL };
 static const char *termcmd[]  = { "urxvt", NULL };
 static const char *surfcmd[]  = { "firefox", NULL };
+static const char *mpdnext[]  = { "mpc next", NULL };
+static const char *mpdvolup[] = { "mpc volume +5", NULL};
+static const char *mpdvoldn[] = { "mpc volume -5", NULL};
+
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = surfcmd } },
+    { MODKEY|ShiftMask,             XK_e,      spawn,          {.v = mpdvolup } },
+    { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = mpdvoldn} },
+    { MODKEY|ShiftMask,             XK_n,      spawn,          {.v = mpdnext } },
     { MODKEY,                       XK_n,      togglebar,      {-1} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
