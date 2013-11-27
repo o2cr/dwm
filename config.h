@@ -73,16 +73,23 @@ static const char *surfcmd[]  = { "firefox", NULL };
 static const char *mpdnext[]  = { "mpc next", NULL };
 static const char *mpdvolup[] = { "mpc volume +5", NULL};
 static const char *mpdvoldn[] = { "mpc volume -5", NULL};
-
+static const char *scrotcmd[] = { "scrot", NULL};
+static const char *mpdprev[]  = { "mpc prev", NULL };
+static const char *mpdmute[]  = { "mpc stop", NULL };
+static const char *mpdplay[]  = { "mpc play", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,             XK_f,      spawn,          {.v = surfcmd } },
-    { MODKEY|ShiftMask,             XK_e,      spawn,          {.v = mpdvolup } },
-    { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = mpdvoldn} },
-    { MODKEY|ShiftMask,             XK_n,      spawn,          {.v = mpdnext } },
+    { 0,                            123,       spawn,          {.v = mpdvolup } },
+    { 0,                            122,       spawn,          {.v = mpdvoldn} },
+    { 0,                            171,       spawn,          {.v = mpdnext } },
+    { 0,                            107,       spawn,          {.v = scrotcmd } },
+    { 0,                            172,       spawn,          {.v = mpdplay} },
+    { 0,                            121,       spawn,          {.v = mpdmute } },
+    { 0,                            173,       spawn,          {.v = mpdprev } },
     { MODKEY,                       XK_n,      togglebar,      {-1} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
