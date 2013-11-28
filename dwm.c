@@ -479,6 +479,7 @@ bstack(Monitor *m) {
         tw = m->ww;
         ty = m->wy;
     }
+
     for(i = mx = 0, tx = m->wx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
         if(i < m->nmasters[m->seltag]) {
             w = (m->ww - mx) / (MIN(n, m->nmasters[m->seltag]) - i);
@@ -1477,11 +1478,12 @@ resize(Client *c, int x, int y, int w, int h, Bool interact) {
 void
 resizeclient(Client *c, int x, int y, int w, int h) {
     XWindowChanges wc;
+    int border = c->isfloating || layouts[selmon->sellts[selmon->seltag]].arrange == NULL ? 0 : gap;
 
-    c->oldx = c->x; c->x = wc.x = x;
-    c->oldy = c->y; c->y = wc.y = y;
-    c->oldw = c->w; c->w = wc.width = w;
-    c->oldh = c->h; c->h = wc.height = h;
+    c->oldx = c->x; c->x = wc.x = x + border;
+    c->oldy = c->y; c->y = wc.y = y + border;
+    c->oldw = c->w; c->w = wc.width = w - border;
+    c->oldh = c->h; c->h = wc.height = h - border;
     wc.border_width = c->bw;
     XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
     configure(c);

@@ -6,6 +6,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int progpx    = 50;       /* progress bar width */
 static const unsigned int progh     = 2;        /* progress bar height */
+static const unsigned int gap       = 4;
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
@@ -70,13 +71,13 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", color[0][ColBG], "-nf", color[0][ColFG], "-sb", color[1][ColBG], "-sf", color[1][ColFG], NULL };
 static const char *termcmd[]  = { "urxvt", NULL };
 static const char *surfcmd[]  = { "firefox", NULL };
-static const char *mpdnext[]  = { "mpc next", NULL };
-static const char *mpdvolup[] = { "mpc volume +5", NULL};
-static const char *mpdvoldn[] = { "mpc volume -5", NULL};
-static const char *scrotcmd[] = { "scrot", NULL};
-static const char *mpdprev[]  = { "mpc prev", NULL };
-static const char *mpdmute[]  = { "mpc stop", NULL };
-static const char *mpdplay[]  = { "mpc play", NULL };
+static const char *mpdnext[]  = { "mpc"," next", NULL };
+static const char *mpdvolup[] = { "mpc", "volume", "+5", NULL};
+static const char *mpdvoldn[] = { "mpc", "volume", " -5", NULL};
+static const char *scrotcmd[] = { "scrot", "-s", NULL};
+static const char *mpdprev[]  = { "mpc", " prev", NULL };
+static const char *mpdmute[]  = { "mpc", "stop", NULL };
+static const char *mpdplay[]  = { "mpc", " play", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
