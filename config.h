@@ -6,25 +6,24 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const unsigned int progpx    = 50;       /* progress bar width */
 static const unsigned int progh     = 2;        /* progress bar height */
-static const unsigned int gap       = 4;
+static const unsigned int gap       = 6;
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
-#define CYAN  "#6AA9B0"
-#define BLACK "#373737"
-#define DGRAY "#575757"
+#define CYAN "#133B47"
+#define BLACK "#121212"
+#define DGRAY "#303030"
 #define LGRAY "#666666"
-#define PINK "#FCC1A2"
-#define YELLOW "#7882BF"
-#define WHITE "#F0F0F0"
+#define RED "#CF6171"
+#define WHITE "#FEFEFE"
 
 static const char color[NUMCOL][ColLast][8] = {
     /* border foreground background */
-    { LGRAY,  DGRAY,     WHITE     }, /* 0 = unselected, unoccupied */
-    { YELLOW, DGRAY,     YELLOW    }, /* 1 = selected, occupied */
-    { PINK,   PINK,      WHITE     }, /* 2 = urgent */
-    { LGRAY,  DGRAY,     WHITE     }, /* 3 = unselected, occupied */
-    { LGRAY,  WHITE,     CYAN      }, /* 4 = selected, unoccupied */
+    { DGRAY, WHITE, BLACK }, /* 0 = unselected, unoccupied */
+    { CYAN, WHITE, CYAN }, /* 1 = selected, occupied */
+    { RED, RED, BLACK }, /* 2 = urgent */
+    { BLACK, WHITE, BLACK }, /* 3 = unselected, occupied */
+    { BLACK, WHITE, CYAN }, /* 4 = selected, unoccupied */
 };
 
 static const char clock_fmt[] = "%a, %m/%d (%H:%M)";
@@ -49,7 +48,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
-static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
+static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
     { tile      },    /* first entry is default */
