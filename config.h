@@ -3,9 +3,9 @@
 /* appearance */
 static const char font[]            = "Terminus:size=8" "Kochi Gothic:size=9" "Baekmuk Gulim:size=9";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 16;       /* snap pixel */
-static const unsigned int progpx    = 50;       /* progress bar width */
-static const unsigned int progh     = 2;        /* progress bar height */
+static const unsigned int snap      = 2;       /* snap pixel */
+static const unsigned int progpx    = 10;       /* progress bar width */
+static const unsigned int progh     = 1;        /* progress bar height */
 static const unsigned int gap       = 6;
 static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */

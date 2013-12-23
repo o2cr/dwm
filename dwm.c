@@ -52,8 +52,8 @@
 #define MIN(A, B)               ((A) < (B) ? (A) : (B))
 #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
 #define NUMCOL                  5
-#define WIDTH(X)                ((X)->w + 2 * (X)->bw)
-#define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
+#define WIDTH(X)                ((X)->w + 2 * (X)->bw + 2 * gap)
+#define HEIGHT(X)               ((X)->h + 2 * (X)->bw + 2 * gap)
 #define TAGMASK                 ((1 << NTAGS) - 1)
 #define TEXTW(X)                (textnw(X, strlen(X)) + dc.font.height)
 
@@ -814,32 +814,23 @@ drawtags(Monitor *m) {
     dc.x = 0;
     for(i = 0; i < NTAGS; i++) {
         char buf[5];
-        int n = 0, occ = 0, urg = 0;
+        int n = 0, urg = 0, sel = 0;
+
+        sel = m->tagset & 1 << i;
 
         for(c = m->clients; c; c = c->next) {
             if(c->tags & 1 << i) {
                 n++;
-                occ = 1;
                 urg |= c->isurgent;
             }
         }
 
         snprintf(buf, 5, "%d", n);
         dc.w = TEXTW(buf);
-        col = dc.color[occ ? 3 : 0];
+        col = dc.color[urg ? 2 : sel ? 1 : 0];
         dc.x += (dc.font.ascent + dc.font.descent) / 2;
         drawtext(buf, col);
-        dc.x -= (dc.font.ascent + dc.font.descent) / 2;
-
-        if (urg) {
-            XSetForeground(dpy, dc.gc, dc.color[2][ColFG].pixel);
-            XFillRectangle(dpy, dc.drawable, dc.gc, dc.x, dc.y, dc.w, 2);
-        } else if(m->tagset & 1 << i) {
-            XSetForeground(dpy, dc.gc, dc.color[1][ColBG].pixel);
-            XFillRectangle(dpy, dc.drawable, dc.gc, dc.x, dc.y, dc.w, 2);
-        }
-
-        dc.x += dc.w;
+        dc.x += (dc.font.ascent + dc.font.descent) / 2;
     }
 }
 
@@ -1482,8 +1473,8 @@ resizeclient(Client *c, int x, int y, int w, int h) {
 
     c->oldx = c->x; c->x = wc.x = x + border;
     c->oldy = c->y; c->y = wc.y = y + border;
-    c->oldw = c->w; c->w = wc.width = w - border;
-    c->oldh = c->h; c->h = wc.height = h - border;
+    c->oldw = c->w; c->w = wc.width = w - 2 * border;
+    c->oldh = c->h; c->h = wc.height = h - 2 * border;
     wc.border_width = c->bw;
     XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
     configure(c);
@@ -1605,6 +1596,7 @@ scan(void) {
 void
 sendmon(Client *c, Monitor *m) {
     Monitor *oldmon = c->mon;
+    Client *nextclient = c->next;
     if(c->mon == m)
         return;
     unfocus(c, True);
@@ -1614,10 +1606,9 @@ sendmon(Client *c, Monitor *m) {
     c->tags = m->tagset; /* assign tags of target monitor */
     attach(c);
     attachstack(c);
-    selmon = m;
-    focus(c);
     arrange(oldmon);
     arrange(m);
+    focus(nextclient);
 }
 
 void
@@ -2198,23 +2189,18 @@ updatewmhints(Client *c) {
 
 void
 view(const Arg *arg) {
-    unsigned int i;
+    unsigned int i, ui;
 
-    if((arg->ui & TAGMASK) == selmon->tagset) {
-        i = selmon->lasttagset;
+    ui = (arg->ui == selmon->tagset) ? selmon->lasttagset : arg->ui;
+
+    if (ui & TAGMASK) {
         selmon->lasttagset = selmon->tagset;
-        selmon->tagset = i;
+        selmon->tagset = ui & TAGMASK;
 
-        for (i=0; !(arg->ui & 1 << i); i++);
-        selmon->seltag = i;
-    } else if (arg->ui & TAGMASK) {
-        selmon->lasttagset = selmon->tagset;
-        selmon->tagset = arg->ui & TAGMASK;
-
-        if(arg->ui == ~0) {
+        if(ui == ~0) {
             selmon->seltag = 0;
         } else {
-            for (i=0; !(arg->ui & 1 << i); i++);
+            for (i=0; !(ui & 1 << i); i++);
             selmon->seltag = i;
         }
     }
@@ -2302,7 +2288,7 @@ zoom(const Arg *arg) {
 int
 main(int argc, char *argv[]) {
     if(argc == 2 && !strcmp("-v", argv[1]))
-        die("dwm-"VERSION", © 2006-2012 dwm engineers, see LICENSE for details\n");
+        die("dwm-"VERSION", ﾂｩ 2006-2012 dwm engineers, see LICENSE for details\n");
     else if(argc != 1)
         die("usage: dwm [-v]\n");
     if(!setlocale(LC_CTYPE, "") || !XSupportsLocale())
@@ -2317,3 +2303,4 @@ main(int argc, char *argv[]) {
     XCloseDisplay(dpy);
     return EXIT_SUCCESS;
 }
+
